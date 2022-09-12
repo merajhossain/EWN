@@ -1,0 +1,9 @@
+html, body, #root{
+  height: 100%;
+}
+
+@media screen and (min-width: 480px) {
+  .form-warpper{
+    width: 380px;
+  }
+}
