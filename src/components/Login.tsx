@@ -81,7 +81,7 @@ function Login() {
                                             </InputGroup>
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="validationFormikPassword" >
-                                        <Form.Label>Password</Form.Label>
+                                            <Form.Label>Password</Form.Label>
                                             <InputGroup hasValidation>
                                                 <Form.Control 
                                                     type={showPassword == true ? "text" : "password"} 
