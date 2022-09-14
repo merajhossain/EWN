@@ -7,6 +7,7 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import SignUpForm from "./components/SignUpForm";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
             <Route path="/"  element={<Login />} /> 
             {/* Signup component */}
             <Route path="/sign-up" element={<SignUp />} />
+            {/* Signup component */}
+            <Route path="/sign-up-form:type" element={<SignUpForm />} />
           </Routes>
         </BrowserRouter>
       </div>
