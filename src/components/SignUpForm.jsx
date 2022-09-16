@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Button, Col, InputGroup, Row } from 'react-bootstrap';
-import { Link, useParams, useNavigate  } from 'react-router-dom';
-import { Formik, Form  } from 'formik';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Formik, Form } from 'formik';
 import { object, string, number, date, InferType } from 'yup';
 import * as Yup from 'yup';
 import signupFormModel from './model/signupFormModel';
@@ -13,22 +13,22 @@ import validationSchema from "./model/validationSchema";
 const { formId, formField } = signupFormModel;
 
 function _renderStepContent(step, errors, signUpFromType, values) {
-  switch (step) {
-    case 0:
-      return <BusinessInfoForm formField={formField} errors={errors} values={values} signUpFromType={signUpFromType} />;
-    case 1:
-      return <ContactInfoForm formField={formField} errors={errors} values={values} signUpFromType={signUpFromType} />;
-    case 2:
-    default:
-      return <></>;
-  }
+    switch (step) {
+        case 0:
+            return <BusinessInfoForm formField={formField} errors={errors} values={values} signUpFromType={signUpFromType} />;
+        case 1:
+            return <ContactInfoForm formField={formField} errors={errors} values={values} signUpFromType={signUpFromType} />;
+        case 2:
+        default:
+            return <></>;
+    }
 }
 
 const steps = ['Business Info', 'Contact Person Info'];
 
-export default function SignUpForm(props, ) {
-   
-    
+export default function SignUpForm(props,) {
+
+
     const [formType, setFormType] = useState();
     const [formStep, setFormStep] = useState(1);
     const { formId, formField } = signupFormModel;
@@ -36,46 +36,46 @@ export default function SignUpForm(props, ) {
     const currentValidationSchema = validationSchema[activeStep];
     const isLastStep = activeStep === steps.length - 1;
 
-    let perameter  = useParams();
+    let perameter = useParams();
     useEffect(() => {
         setFormType(perameter.type?.substr(1));
 
     }, [perameter])
 
-    let navigate = useNavigate(); 
+    let navigate = useNavigate();
 
     const _sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      async function _submitForm(values, actions) {
+    }
+    async function _submitForm(values, actions) {
         await _sleep(1000);
-        let path = `/`; 
+        let path = `/`;
         navigate(path);
         actions.setSubmitting(false);
-      }
-    
-      const  _handleSubmit = (values, actions) => {
+    }
+
+    const _handleSubmit = (values, actions) => {
         if (isLastStep) {
-          _submitForm(values, actions);
+            _submitForm(values, actions);
         } else {
             actions.setTouched({});
             actions.setSubmitting(false);
             setActiveStep(activeStep + 1);
         }
-        
-      }
-      
-    
-      function _handleBack() {
+
+    }
+
+
+    function _handleBack() {
         setActiveStep(activeStep - 1);
-      }
-    return(
+    }
+    return (
         <>
             <React.StrictMode>
                 <React.Fragment>
                     <div className='d-md-flex align-items-center justify-content-center h-100 w-100'>
                         <div className='row w-100'>
-                        <div className="offset-md-1 col-md-10">
+                            <div className="offset-md-1 col-md-10">
                                 <div className="form-warpper shadow-lg-custom p-5 bg-white rounded w-100">
                                     <div className="text-center">
                                         <h2>Let's Get Started With</h2>
@@ -107,14 +107,14 @@ export default function SignUpForm(props, ) {
                                                 dirty,
                                                 handleSubmit,
                                                 handleChange,
-                                                isSubmitting}) => (
-                                                    
-                                                    
+                                                isSubmitting }) => (
+
+
                                                 <Form id={formId}>
                                                     {_renderStepContent(activeStep, errors, formType, values)}
                                                     <Row>
                                                         <Col xs md={6}>
-                                                            
+
                                                             {activeStep == 0 && (
                                                                 <Link to="/sign-up">
                                                                     <div className="d-grid mb-3">
@@ -124,10 +124,10 @@ export default function SignUpForm(props, ) {
                                                             )}
                                                             {activeStep !== 0 && (
                                                                 <div className="d-grid mb-3">
-                                                                    <Button 
+                                                                    <Button
                                                                         variant="outline-success"
                                                                         disabled={isSubmitting}
-                                                                        onClick={_handleBack} 
+                                                                        onClick={_handleBack}
                                                                     >
                                                                         Back
                                                                     </Button>
@@ -140,20 +140,20 @@ export default function SignUpForm(props, ) {
                                                                     {isLastStep ? 'Submit' : 'Next'}
                                                                 </Button>
                                                             </div>
-                                                        </Col>                                            
+                                                        </Col>
                                                     </Row>
                                                 </Form>
                                             )}
                                         </Formik>
                                     </div>
-                                    
+
                                     <div className='text-center mt-3'>
                                         <Link to="/"><span className='text-secondary'>Already have an account?</span> <span className='text-success'>Sign In</span></Link>
                                     </div>
-                                </div>       
+                                </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </React.Fragment>
             </React.StrictMode>
         </>

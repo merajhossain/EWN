@@ -16,25 +16,25 @@ export default function SelectField(props) {
     }
   }
 
-  return(
+  return (
     <>
       <Form.Label>{props.label}</Form.Label>
       <InputGroup hasValidation >
-          <Form.Control 
-              as="select"
-              type="select" 
-              placeholder={props.placeholder} 
-              {...field}
-              {...rest}
-              isInvalid={!!props?.errors}
-          >
-            {props.roleData.map((item, index) => (
-              <option key={index} value={item.value}>{item.label}</option>
-            ))}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            {_renderHelperText()}
-          </Form.Control.Feedback>
+        <Form.Control
+          as="select"
+          type="select"
+          placeholder={props.placeholder}
+          {...field}
+          {...rest}
+          isInvalid={!!props?.errors}
+        >
+          {props.roleData.map((item, index) => (
+            <option key={index} value={item.value}>{item.label}</option>
+          ))}
+        </Form.Control>
+        <Form.Control.Feedback type="invalid">
+          {_renderHelperText()}
+        </Form.Control.Feedback>
       </InputGroup>
     </>
   )

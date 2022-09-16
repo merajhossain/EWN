@@ -18,13 +18,13 @@ export default function InputTextField(props) {
     }
   }
 
-  return(
-        <>
-          <Form.Label>{props.label}</Form.Label>
-            <PhoneInput
-              country={'bd'}
-              name="phone"
-              />
-        </>
+  return (
+    <>
+      <Form.Label>{props.label}</Form.Label>
+      <PhoneInput
+        country={'bd'}
+        name="phone"
+      />
+    </>
   )
 }

@@ -19,7 +19,7 @@ function App() {
     <div className="App h-100">
       <Navbar bg="dark">
         <div className="container-fluid h-100">
-        <Navbar.Brand href="/">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src="https://ewn-bd.com/images/site-navigation/logo.svg"
@@ -34,14 +34,14 @@ function App() {
           <BrowserRouter>
             <Routes>
               {/* Login component */}
-              <Route path="/"  element={<Login />} /> 
+              <Route path="/" element={<Login />} />
               {/* Signup component */}
               <Route path="/sign-up" element={<SignUp />} />
               {/* Signup component */}
               <Route path="/sign-up-form:type" element={<SignUpForm />} />
             </Routes>
           </BrowserRouter>
-           
+
         </Container>
       </div>
     </div>

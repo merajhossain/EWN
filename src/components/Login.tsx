@@ -41,7 +41,7 @@ function Login() {
                             {show && <Alert className='mt-3' variant="danger" onClose={() => setShow(false)} dismissible>
                                 timeout of 5000ms exceeded
                             </Alert>}
-                            
+
                             <Formik
                                 validationSchema={schema}
                                 onSubmit={(values, actions) => {
@@ -50,11 +50,11 @@ function Login() {
                                         setShowLoading(false);
                                         setShow(true);
                                     }, 5000);
-                                    
+
                                 }}
                                 initialValues={{
                                     username: '',
-                                    password:''
+                                    password: ''
                                 }}
                             >
                                 {({
@@ -63,13 +63,13 @@ function Login() {
                                     values,
                                     errors
                                 }) => (
-                                    <Form noValidate  onSubmit={handleSubmit}>
+                                    <Form noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3" controlId="validationFormikUsername" >
                                             <Form.Label>Email</Form.Label>
                                             <InputGroup hasValidation >
-                                                <Form.Control 
-                                                    type="email" 
-                                                    placeholder="Enter email" 
+                                                <Form.Control
+                                                    type="email"
+                                                    placeholder="Enter email"
                                                     name="username"
                                                     value={values.username}
                                                     onChange={handleChange}
@@ -83,10 +83,10 @@ function Login() {
                                         <Form.Group className="mb-3" controlId="validationFormikPassword" >
                                             <Form.Label>Password</Form.Label>
                                             <InputGroup hasValidation>
-                                                <Form.Control 
-                                                    type={showPassword == true ? "text" : "password"} 
-                                                    name="password" 
-                                                    placeholder="Password" 
+                                                <Form.Control
+                                                    type={showPassword == true ? "text" : "password"}
+                                                    name="password"
+                                                    placeholder="Password"
                                                     onChange={handleChange}
                                                     isInvalid={!!errors.password}
                                                 />
@@ -94,7 +94,7 @@ function Login() {
                                                     {showPassword == true ? <FaEye /> : <FaEyeSlash />}
                                                 </Button>
                                                 <Form.Control.Feedback type="invalid">
-                                                        {errors.password}
+                                                    {errors.password}
                                                 </Form.Control.Feedback>
                                             </InputGroup>
                                         </Form.Group>
@@ -109,8 +109,8 @@ function Login() {
                                         <div className="d-grid mb-3">
                                             <Button variant="success" type="submit" >
                                                 <span>Submit</span>
-                                                {showLoading == true ? <span><img src={loading} height="20" width="20" style={{ marginLeft:10 }} /></span> : ''}
-                                                
+                                                {showLoading == true ? <span><img src={loading} height="20" width="20" style={{ marginLeft: 10 }} /></span> : ''}
+
                                             </Button>
                                         </div>
 

@@ -22,7 +22,7 @@ const {
 } = signupFormModel;
 
 
-const validationSchema =  [
+const validationSchema = [
   Yup.object().shape({
     businessName: Yup.string().required(`${businessName.requiredErrorMsg}`),
     websitesUrl: Yup.string().required(`${websitesUrl.requiredErrorMsg}`),
