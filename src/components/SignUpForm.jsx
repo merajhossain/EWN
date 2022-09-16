@@ -49,7 +49,6 @@ export default function SignUpForm(props, ) {
       }
       async function _submitForm(values, actions) {
         await _sleep(1000);
-        // alert(JSON.stringify(values, null, 2));
         let path = `/`; 
         navigate(path);
         actions.setSubmitting(false);
@@ -102,7 +101,6 @@ export default function SignUpForm(props, ) {
                                             initialValues={formInitialValues}
                                             validationSchema={currentValidationSchema}
                                             onSubmit={_handleSubmit}
-                                            // validate={ activeStep == 1 ? validate : ''}
                                         >
                                             {({ values,
                                                 errors,
