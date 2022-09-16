@@ -23,9 +23,6 @@ export default function BusinessInfoForm(props: any) {
       props?.signUpFromType == 'business' ? setColChange(6) : setColChange(4);       
   }, [props?.signUpFromType])
 
-  console.log('postCode.name', postCode.name);
-  
-
   return (
     <React.Fragment>
         <Row>
