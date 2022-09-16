@@ -10,8 +10,6 @@ import formInitialValues from './model/formInitialValues';
 import ContactInfoForm from './forms/ContactInfoForm';
 import validationSchema from "./model/validationSchema";
 
-console.log('signupFormModel', validationSchema);
-
 const { formId, formField } = signupFormModel;
 
 function _renderStepContent(step, errors, signUpFromType, values) {
