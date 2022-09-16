@@ -6,16 +6,16 @@ import { Formik, Field, ErrorMessage, useFormik  } from 'formik';
 import { object, string, number, date, InferType } from 'yup';
 import * as Yup from 'yup';
 
-const validationForBusinessInfoForm: any = object().shape({
+const validationForBusinessInfoForm:any = object().shape({
     businessName: Yup.string().required("business name is required"),
     websitesUrl: Yup.string().required("website or social is required"),
     districtOrState: Yup.string().required("District or State is required"),
     cityOrTown: Yup.string().required("City or Town is required"),
-    postCode: Yup.number().required("Postcode is required"),
+    postCode: Yup.number().required("postCode is required"),
     address: Yup.string().required("Address is required"),
 });
 
-const validationForPersonalInfoForm: any = object().shape({
+const validationForPersonalInfoForm:any = object().shape({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last Name is required"),
     phoneNumber: Yup.string().required("Phone number is required"),
@@ -72,9 +72,9 @@ export default function SignUpForm() {
                                 <div className="business-info-wrapper w-100">
                                     <Formik
                                         validationSchema={validationForBusinessInfoForm}
-                                        enableReinitialize={false}
                                         onSubmit={(values, actions) => {
                                             setFormDataOne(values);
+                                            actions.setSubmitting(false);
                                             setFormStep(2)
                                         }}
                                         
@@ -97,8 +97,10 @@ export default function SignUpForm() {
                                             handleSubmit,
                                             handleReset                                            
                                         }) => (
-                                            <Form noValidate  onSubmit={handleSubmit}>
-                                                <Row>
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                
+                                                <>
+                                                    <Row>
                                                     <Col xs md={6}>
                                                         <Form.Group className="mb-3" controlId="validationFormikBusinessName" >
                                                             <Form.Label>Business Name</Form.Label>
@@ -107,9 +109,9 @@ export default function SignUpForm() {
                                                                     type="text" 
                                                                     placeholder="Business Name" 
                                                                     name="businessName"
-                                                                    value={formDataOne?.businessName}
                                                                     onChange={handleChange}
                                                                     isInvalid={!!errors.businessName}
+                                                                    value={values.businessName}
                                                                 />
                                                                 <Form.Control.Feedback type="invalid">
                                                                     {errors.businessName}
@@ -125,9 +127,9 @@ export default function SignUpForm() {
                                                                     type="text" 
                                                                     placeholder="Website or social media URL" 
                                                                     name="websitesUrl"
-                                                                    value={formDataOne?.websitesUrl}
                                                                     onChange={handleChange}
                                                                     isInvalid={!!errors.websitesUrl}
+                                                                    value={values.websitesUrl}
                                                                 />
                                                                 <Form.Control.Feedback type="invalid">
                                                                     {errors.websitesUrl}
@@ -135,107 +137,108 @@ export default function SignUpForm() {
                                                             </InputGroup>
                                                         </Form.Group>
                                                     </Col>
-                                                </Row>
-                                                <Row>
-                                                    {formType == 'business' && 
+                                                    </Row>
+                                                    <Row>
+                                                        {formType == 'business' && 
+                                                            <Col xs md={colChange}>
+                                                                <Form.Group controlId="formFile" className="mb-3">
+                                                                    <Form.Label>Trade Licence</Form.Label>
+                                                                    <Form.Control type="file" />
+                                                                </Form.Group>
+                                                            </Col>
+                                                        }
                                                         <Col xs md={colChange}>
-                                                            <Form.Group controlId="formFile" className="mb-3">
-                                                                <Form.Label>Default file input example</Form.Label>
-                                                                <Form.Control type="file" />
+                                                            <Form.Group className="mb-3" controlId="validationFormikDistrict" >
+                                                                <Form.Label>District/State</Form.Label>
+                                                                <InputGroup hasValidation >
+                                                                    <Form.Control 
+                                                                        type="text" 
+                                                                        placeholder="district or state" 
+                                                                        name="districtOrState"
+                                                                        value={values.districtOrState}
+                                                                        onChange={handleChange}
+                                                                        isInvalid={!!errors.districtOrState}
+                                                                    />
+                                                                    <Form.Control.Feedback type="invalid">
+                                                                        {errors.districtOrState}
+                                                                    </Form.Control.Feedback>
+                                                                </InputGroup>
                                                             </Form.Group>
                                                         </Col>
-                                                    }
-                                                    <Col xs md={colChange}>
-                                                        <Form.Group className="mb-3" controlId="validationFormikDistrict" >
-                                                            <Form.Label>District/State</Form.Label>
-                                                            <InputGroup hasValidation >
-                                                                <Form.Control 
-                                                                    type="text" 
-                                                                    placeholder="district or state" 
-                                                                    name="districtOrState"
-                                                                    value={formDataOne?.districtOrState}
-                                                                    onChange={handleChange}
-                                                                    isInvalid={!!errors.districtOrState}
-                                                                />
-                                                                <Form.Control.Feedback type="invalid">
-                                                                    {errors.districtOrState}
-                                                                </Form.Control.Feedback>
-                                                            </InputGroup>
-                                                        </Form.Group>
-                                                    </Col>
-                                                    <Col xs md={colChange}>
-                                                        <Form.Group className="mb-3" controlId="validationFormikCityTown" >
-                                                            <Form.Label>City/Town</Form.Label>
-                                                            <InputGroup hasValidation >
-                                                                <Form.Control 
-                                                                    type="text" 
-                                                                    placeholder="district or state" 
-                                                                    name="cityOrTown"
-                                                                    value={formDataOne?.cityOrTown}
-                                                                    onChange={handleChange}
-                                                                    isInvalid={!!errors.cityOrTown}
-                                                                />
-                                                                <Form.Control.Feedback type="invalid">
-                                                                    {errors.cityOrTown}
-                                                                </Form.Control.Feedback>
-                                                            </InputGroup>
-                                                        </Form.Group>
-                                                    </Col>
-                                                    <Col xs md={colChange}>
-                                                        <Form.Group className="mb-3" controlId="validationFormikPostCodeZipcode" >
-                                                            <Form.Label>Postcode/Zipcode</Form.Label>
-                                                            <InputGroup hasValidation >
-                                                                <Form.Control 
-                                                                    type="text" 
-                                                                    placeholder="postcode or zipcode" 
-                                                                    name="postCode"
-                                                                    value={formDataOne?.postCode}
-                                                                    onChange={handleChange}
-                                                                    isInvalid={!!errors.postCode}
-                                                                />
-                                                                <Form.Control.Feedback type="invalid">
-                                                                    {errors.postCode}
-                                                                </Form.Control.Feedback>
-                                                            </InputGroup>
-                                                        </Form.Group>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs md={12}>
-                                                        <Form.Group className="mb-3" controlId="validationFormikAddress" >
-                                                            <Form.Label>Address</Form.Label>
-                                                            <InputGroup hasValidation >
-                                                                <Form.Control 
-                                                                    type="text" 
-                                                                    placeholder="Address" 
-                                                                    name="address"
-                                                                    value={formDataOne?.address}
-                                                                    onChange={handleChange}
-                                                                    isInvalid={!!errors.address}
-                                                                />
-                                                                <Form.Control.Feedback type="invalid">
-                                                                    {errors.address}
-                                                                </Form.Control.Feedback>
-                                                            </InputGroup>
-                                                        </Form.Group>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col xs md={6}>
-                                                        <Link to="/sign-up">
+                                                        <Col xs md={colChange}>
+                                                            <Form.Group className="mb-3" controlId="validationFormikCityTown" >
+                                                                <Form.Label>City/Town</Form.Label>
+                                                                <InputGroup hasValidation >
+                                                                    <Form.Control 
+                                                                        type="text" 
+                                                                        placeholder="district or state" 
+                                                                        name="cityOrTown"
+                                                                        value={values.cityOrTown}
+                                                                        onChange={handleChange}
+                                                                        isInvalid={!!errors.cityOrTown}
+                                                                    />
+                                                                    <Form.Control.Feedback type="invalid">
+                                                                        {errors.cityOrTown}
+                                                                    </Form.Control.Feedback>
+                                                                </InputGroup>
+                                                            </Form.Group>
+                                                        </Col>
+                                                        <Col xs md={colChange}>
+                                                            <Form.Group className="mb-3" controlId="validationFormikPostCodeZipcode" >
+                                                                <Form.Label>postCode/Zipcode</Form.Label>
+                                                                <InputGroup hasValidation >
+                                                                    <Form.Control 
+                                                                        type="text" 
+                                                                        placeholder="postCode or zipcode" 
+                                                                        name="postCode"
+                                                                        value={values.postCode}
+                                                                        onChange={handleChange}
+                                                                        isInvalid={!!errors.postCode}
+                                                                    />
+                                                                    <Form.Control.Feedback type="invalid">
+                                                                        {errors.postCode}
+                                                                    </Form.Control.Feedback>
+                                                                </InputGroup>
+                                                            </Form.Group>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col xs md={12}>
+                                                            <Form.Group className="mb-3" controlId="validationFormikAddress" >
+                                                                <Form.Label>Address</Form.Label>
+                                                                <InputGroup hasValidation >
+                                                                    <Form.Control 
+                                                                        type="text" 
+                                                                        placeholder="Address" 
+                                                                        name="address"
+                                                                        value={values.address}
+                                                                        onChange={handleChange}
+                                                                        isInvalid={!!errors.address}
+                                                                    />
+                                                                    <Form.Control.Feedback type="invalid">
+                                                                        {errors.address}
+                                                                    </Form.Control.Feedback>
+                                                                </InputGroup>
+                                                            </Form.Group>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col xs md={6}>
+                                                            <Link to="/sign-up">
+                                                                <div className="d-grid mb-3">
+                                                                    <Button variant="outline-success" >Back</Button>
+                                                                </div>
+                                                            </Link>
+                                                        </Col>
+                                                        <Col xs md={6}>
                                                             <div className="d-grid mb-3">
-                                                                <Button variant="outline-success" >Back</Button>
+                                                                <Button variant="success" type="submit" >
+                                                                    <span>Next</span>
+                                                                </Button>
                                                             </div>
-                                                        </Link>
-                                                    </Col>
-                                                    <Col xs md={6}>
-                                                        <div className="d-grid mb-3">
-                                                            <Button variant="success" type="submit" >
-                                                                <span>Next</span>
-                                                            </Button>
-                                                        </div>
-                                                    </Col>                                            
-                                                </Row>
+                                                        </Col>                                            
+                                                    </Row>
+                                                </>
                                             </Form>
                                         )}
                                     </Formik>
@@ -280,7 +283,7 @@ export default function SignUpForm() {
                                                                     type="text" 
                                                                     placeholder="First Name" 
                                                                     name="firstName"
-                                                                    value={formDataOne?.firstName}
+                                                                    value={values.firstName}
                                                                     onChange={handleChange}
                                                                     isInvalid={!!errors.firstName}
                                                                 />

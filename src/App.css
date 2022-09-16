@@ -26,3 +26,13 @@ html, body, #root{
   padding-top: 0;
   padding-bottom: 0;
 }
+.form-label::last-word {
+  color: rgb(211, 2, 2);
+}
+
+.navbar {
+  font-weight: 700;
+  background: #fff !important;
+  padding: 10px 0;
+  box-shadow: 0 10px 20px rgb(50 65 141 / 10%);
+}

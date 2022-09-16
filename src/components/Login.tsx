@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputGroup } from 'react-bootstrap';
+import { Col, InputGroup, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
@@ -33,10 +33,10 @@ function Login() {
             <div className="row h-100">
                 <div className="col-md-12 h-100">
                     <div className='d-flex align-items-center justify-content-center h-100'>
-                        <div className="form-warpper shadow-lg p-3 bg-white rounded">
+                        <div className="form-warpper shadow-lg-custom py-5 px-3 bg-white rounded">
                             <div className='text-center'>
-                                <img src="https://ewn-bd.com/images/site-navigation/logo.svg" alt="logo" className='mb-3' />
-                                <h3>Login</h3>
+                                <h3>Sign In</h3>
+                                <p>Fill in the below sign in into your account</p>
                             </div>
                             {show && <Alert className='mt-3' variant="danger" onClose={() => setShow(false)} dismissible>
                                 timeout of 5000ms exceeded
@@ -65,11 +65,11 @@ function Login() {
                                 }) => (
                                     <Form noValidate  onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3" controlId="validationFormikUsername" >
-                                            <Form.Label>Username</Form.Label>
+                                            <Form.Label>Email</Form.Label>
                                             <InputGroup hasValidation >
                                                 <Form.Control 
                                                     type="email" 
-                                                    placeholder="Enter username" 
+                                                    placeholder="Enter email" 
                                                     name="username"
                                                     value={values.username}
                                                     onChange={handleChange}
@@ -103,7 +103,7 @@ function Login() {
                                                 <Form.Check type="checkbox" label="Remember Password" />
                                             </Form.Group>
                                             <div className='mb-3'>
-                                                <Link to="#">Forget Password</Link>
+                                                <Link to="#"><span>Forget Password</span></Link>
                                             </div>
                                         </div>
                                         <div className="d-grid mb-3">
